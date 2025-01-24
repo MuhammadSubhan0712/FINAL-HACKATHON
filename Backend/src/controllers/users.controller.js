@@ -2,8 +2,6 @@ import User from "../models/users.model";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-
-
 // To generate access token
 const generateAccessToken = (user) => {
   return jwt.sign({ email: user.email }, process.env.ACCESS_JWT_SECRET, {
@@ -88,24 +86,32 @@ const logoutUser = async (req, res) => {
   });
 };
 
+const refreshToken = async (req, res) => {
+  const refreshToken = req.cookies.refreshToken || req.body.refreshToken;
+  if (!refreshToken) {
+    res.status(401).json({
+      message: "!No Refresh Token Found!",
+    });
+    return;
+  }
 
-const refreshTokens = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken || req.body.refreshToken;
-    if (!refreshToken) {
-      res.status(401).json({
-        message: "!No Refresh Token Found!",
-      });
-      return;
-    }
+  const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET);
 
-    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET);
+  const user = await User.findOne({ email: decodedToken.email });
 
-    const user = await User.findOne({ email: decodedToken.email });
-  
-    if (!user) {
-      res.status(404).json({
-        message: "Invalid Token",
-      });
-      return;
-    }
-  
+  if (!user) {
+    res.status(404).json({
+      message: "Invalid Token",
+    });
+    return;
+  }
+  const generateToken = generateAccessToken(user);
+  res.json({
+    message: "Access Token Generated",
+    accessToken: generateToken,
+  });
+  res.json({ decodedToken });
+};
+
+
+export {registerUser , loginUser , logoutUser , refreshToken};
