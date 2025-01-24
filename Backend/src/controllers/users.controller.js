@@ -43,15 +43,37 @@ const registerUser = async (req, res) => {
   });
 };
 
-
 // To Login User
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-  
-    if (!email || !password) {
-      res.status(400).json({
-        message: "You must enter email & password",
-      });
-      return;
-    }
-  
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({
+      message: "You must enter email & password",
+    });
+    return;
+  }
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(404).json({
+      message: "!No user found!",
+    });
+    return;
+  }
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) {
+    res.status(400).json({
+      message: "Incorrect Password",
+    });
+  }
+  // Cookies
+  res.cookie("refreshToken", refreshToken, { http: true, secure: false });
+  res.status(200).json({
+    message: "User LoggedIn Successfully",
+    accessToken: generateAccessToken(user),
+    refreshToken: generateRefreshToken(user),
+    data: user,
+  });
+};
