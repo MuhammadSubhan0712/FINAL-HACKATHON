@@ -2,6 +2,8 @@ import User from "../models/users.model";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+
+
 // To generate access token
 const generateAccessToken = (user) => {
   return jwt.sign({ email: user.email }, process.env.ACCESS_JWT_SECRET, {
@@ -75,5 +77,13 @@ const loginUser = async (req, res) => {
     accessToken: generateAccessToken(user),
     refreshToken: generateRefreshToken(user),
     data: user,
+  });
+};
+
+// To logout user
+const logoutUser = async (req, res) => {
+  res.clearCookie("refreshToken");
+  res.json({
+    message: "User Logout Successfully",
   });
 };
