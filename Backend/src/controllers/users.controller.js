@@ -87,3 +87,25 @@ const logoutUser = async (req, res) => {
     message: "User Logout Successfully",
   });
 };
+
+
+const refreshTokens = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken || req.body.refreshToken;
+    if (!refreshToken) {
+      res.status(401).json({
+        message: "!No Refresh Token Found!",
+      });
+      return;
+    }
+
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET);
+
+    const user = await User.findOne({ email: decodedToken.email });
+  
+    if (!user) {
+      res.status(404).json({
+        message: "Invalid Token",
+      });
+      return;
+    }
+  
