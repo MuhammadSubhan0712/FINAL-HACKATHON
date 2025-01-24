@@ -28,4 +28,9 @@ const registerUser = async (req, res) => {
       });
       return;
     }
-    
+    const user = await User.findOne({ email: email });
+  if (user) {
+    res.status(401).json({
+      message: "User Already Exist",
+    });
+  }
