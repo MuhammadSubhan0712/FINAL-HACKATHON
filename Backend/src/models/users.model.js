@@ -2,20 +2,31 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 const userSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: [true, "Username is required"],
+    cnic: {
+      type: Number,
+      unique: true,
+      required: [true, "cnic is required"],
+      validate: {
+        validator: function (value) {
+            return /^[0-9]{5}-[0-9]{7}-[0-9]$/.test(value);
+        },  
+        message: "Invalid CNIC format"
+
+    }
     },
     email: {
       type: String,
       required: [true, "Email is required"],
       unique: true,
     },
-    password: {
+    name: {
       type: String,
-      required: [true, "Password is required"],
-      unique: true,
+      required: [true, "name is required"],
     },
+    password:{
+      type:String,
+      required:true, // created by system
+    }
   },
   {
     timestamps: true,
