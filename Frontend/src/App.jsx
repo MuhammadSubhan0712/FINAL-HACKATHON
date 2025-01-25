@@ -1,34 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div className="flex items-center gap-4 rounded-lg bg-white p-6 shadow-md outline outline-black/5 dark:bg-gray-800">
+    <span className="inline-flex shrink-0 rounded-full border border-pink-300 bg-pink-100 p-2 dark:border-pink-300/10 dark:bg-pink-400/10">
+      <svg className="size-6 stroke-pink-700 dark:stroke-pink-500">
+      </svg>
+    </span>
+    <div>
+      <p className="text-gray-700 dark:text-gray-400">
+        <span className="font-medium text-gray-950 dark:text-white">Tom Watson</span> mentioned you in
+        <span className="font-medium text-gray-950 dark:text-white">Logo redesign</span>
       </p>
-    </>
+      <time className="mt-1 block text-gray-500" datetime="9:37">9:37am</time>
+    </div>
+  </div>
+  </>
   )
 }
 
