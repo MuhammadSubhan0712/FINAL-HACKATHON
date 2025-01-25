@@ -2,9 +2,17 @@ import Guarantor from "../models/guarantor.model.js";
 
 // Create a new guarantor
 export const createGuarantor = async (req, res) => {
-  const { name, email, location, cnic, bankDetails, permissionAddress } = req.body;
+  const { name, email, location, cnic, bankDetails, permissionAddress } =
+    req.body;
 
-  if (!name || !email || !location || !cnic || !bankDetails || !permissionAddress) {
+  if (
+    !name ||
+    !email ||
+    !location ||
+    !cnic ||
+    !bankDetails ||
+    !permissionAddress
+  ) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -20,7 +28,9 @@ export const createGuarantor = async (req, res) => {
 
     await guarantor.save();
 
-    res.status(201).json({ message: "Guarantor created successfully", guarantor });
+    res
+      .status(201)
+      .json({ message: "Guarantor created successfully", guarantor });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -55,9 +65,17 @@ export const getGuarantorById = async (req, res) => {
 // Update a guarantor's details
 export const updateGuarantor = async (req, res) => {
   const { id } = req.params;
-  const { name, email, location, cnic, bankDetails, permissionAddress } = req.body;
+  const { name, email, location, cnic, bankDetails, permissionAddress } =
+    req.body;
 
-  if (!name || !email || !location || !cnic || !bankDetails || !permissionAddress) {
+  if (
+    !name ||
+    !email ||
+    !location ||
+    !cnic ||
+    !bankDetails ||
+    !permissionAddress
+  ) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -76,7 +94,9 @@ export const updateGuarantor = async (req, res) => {
 
     await guarantor.save();
 
-    res.status(200).json({ message: "Guarantor updated successfully", guarantor });
+    res
+      .status(200)
+      .json({ message: "Guarantor updated successfully", guarantor });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -107,7 +127,9 @@ export const getGuarantorsForLoan = async (req, res) => {
   try {
     const guarantors = await Guarantor.find({ loan: loanId }).populate("loan");
     if (!guarantors.length) {
-      return res.status(404).json({ message: "No guarantors found for this loan" });
+      return res
+        .status(404)
+        .json({ message: "No guarantors found for this loan" });
     }
 
     res.status(200).json({ guarantors });
