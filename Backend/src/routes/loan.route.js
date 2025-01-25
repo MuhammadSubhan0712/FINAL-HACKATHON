@@ -37,6 +37,6 @@ router.put("/updateLoan/:id", updateLoan);
 
 // To delete specific Loan
 
-router.put("/deleteLoan/:id", deleteLoan);
+router.delete("/deleteLoan/:id", deleteLoan);
 
 export default router;
