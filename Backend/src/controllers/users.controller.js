@@ -23,12 +23,11 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // Use true for 465 port, otherwise false
   auth: {
-    user: "cristal33@ethereal.email",
-    pass: "yyjB5p68CQHc7FNg1E",
+    user: "wendell73@ethereal.email",
+    pass: "DDMD3KjKbRmMnn1Xuc",
   },
 });
-// process.env.EMAIL_USER ||
-// process.env.EMAIL_PASS ||
+
 // Generate a random password function
 const generateRandomPassword = () => {
   return crypto.randomBytes(8).toString("hex"); // Generates an 8-byte hexadecimal password
@@ -37,7 +36,7 @@ const generateRandomPassword = () => {
 // Send Email function
 const sendEmail = async (email, name, randomPassword) => {
   return transporter.sendMail({
-    from: '"Your Name" <your-email@example.com>',
+    from: '"Muhammad Subhan Khan" <muhammadsubhan0712@gmail.com>',
     to: email, // The recipient email from the user request
     subject: "Welcome to the platform!",
     text: `Hello ${name}, your password is: ${randomPassword}`,
@@ -47,9 +46,9 @@ const sendEmail = async (email, name, randomPassword) => {
 
 // To register the User
 const registerUser = async (req, res) => {
-  const { cnic, email, name, password } = req.body;
+  const { cnic, email, name } = req.body;
 
-  if (!cnic || !email || !name || !password) {
+  if (!cnic || !email || !name) {
     res.status(400).json({
       message: "You must enter cnic email name & password",
     });

@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 const userSchema = new mongoose.Schema(
   {
     cnic: {
-      type: Number,
+      type: String,
       unique: true,
       required: [true, "cnic is required"],
       validate: {

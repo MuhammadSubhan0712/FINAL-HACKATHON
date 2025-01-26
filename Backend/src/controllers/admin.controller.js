@@ -82,7 +82,7 @@ const loginAdmin = async (req, res) => {
 const logoutAdmin = async (req, res) => {
   res.clearCookie("refreshToken");
   res.json({
-    message: "User Logout Successfully",
+    message: "Admin Logout Successfully",
   });
 };
 
@@ -97,7 +97,7 @@ const refreshToken = async (req, res) => {
 
   const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET);
 
-  const user = await User.findOne({ email: decodedToken.email });
+  const user = await Admin.findOne({ email: decodedToken.email });
 
   if (!user) {
     res.status(404).json({

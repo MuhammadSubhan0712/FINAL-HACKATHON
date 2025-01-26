@@ -1,5 +1,5 @@
-import Loan from "../models/loan.models.js";
-import Guarantor from "../models/guarantor.model.js";
+import Loan from "../models/loan.model.js";
+import Guarantor from "../models/guranator.model.js";
 import mongoose from "mongoose";
 
 

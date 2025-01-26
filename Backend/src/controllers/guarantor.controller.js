@@ -1,4 +1,4 @@
-import Guarantor from "../models/guarantor.model.js";
+import Guarantor from "../models/guranator.model.js";
 
 // Create a new guarantor
 export const createGuarantor = async (req, res) => {

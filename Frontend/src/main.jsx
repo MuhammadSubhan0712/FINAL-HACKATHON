@@ -8,7 +8,9 @@ import Login from "../src/Pages/Login.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Reciept from "./Pages/Reciept.jsx";
 import AdminPanel from "./Pages/AdminPanel.jsx";
-
+import CreateGuranator from "./Pages/Guranator.jsx";
+import { Provider } from "react-redux";
+import { store } from "./Components/Config/stores/store.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,9 +41,13 @@ const router = createBrowserRouter([
         element: <AdminPanel />,
       },
       {
+        path: "guranator",
+        element: <CreateGuranator />,
+      },
+      {
         path: "*",
         element: (
-          <h2 className="text-xl text-red-600  justify-center items-center">
+          <h2 className="text-xl text-red-600 flex justify-center items-center">
             404 || Not Found{" "}
           </h2>
         ),
@@ -51,5 +57,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router}></RouterProvider>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );
