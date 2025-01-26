@@ -8,11 +8,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "cnic is required"],
       validate: {
         validator: function (value) {
-            return /^[0-9]{5}-[0-9]{7}-[0-9]$/.test(value);
-        },  
-        message: "Invalid CNIC format"
-
-    }
+          return /^[0-9]{5}-[0-9]{7}-[0-9]$/.test(value);
+        },
+        message: "Invalid CNIC format",
+      },
     },
     email: {
       type: String,
@@ -23,10 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "name is required"],
     },
-    password:{
-      type:String,
-      required:true, // created by system
-    }
+    password: {
+      type: String,
+      required: true, // created by system
+    },
   },
   {
     timestamps: true,

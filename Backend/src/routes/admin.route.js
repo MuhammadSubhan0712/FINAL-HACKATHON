@@ -7,7 +7,6 @@ import {
   refreshToken,
 } from "../controllers/admin.controller.js";
 
-
 const router = express.Router();
 
 // To register User

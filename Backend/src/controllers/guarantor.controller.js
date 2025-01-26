@@ -1,5 +1,6 @@
 import Guarantor from "../models/guranator.model.js";
 
+
 // Create a new guarantor
 export const createGuarantor = async (req, res) => {
   const { name, email, location, cnic, bankDetails, permissionAddress } =

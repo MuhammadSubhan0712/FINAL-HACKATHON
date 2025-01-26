@@ -2,7 +2,6 @@ import Loan from "../models/loan.model.js";
 import Guarantor from "../models/guranator.model.js";
 import mongoose from "mongoose";
 
-
 // Function to calculate the EMI (Equated Monthly Installment)
 const calculateLoanEMI = (
   loanAmount,
