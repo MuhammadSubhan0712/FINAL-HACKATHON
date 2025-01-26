@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white">
       {/* Logo Section */}
       <div className="text-2xl font-bold cursor-pointer">
-        <a href="/">MyLogo</a>
+      <a href="/"> <img src="https://uxwing.com/wp-content/themes/uxwing/download/banking-finance/bank-building-icon.png" alt="logo" /></a>
       </div>
 
       {/* Search Bar Section */}
